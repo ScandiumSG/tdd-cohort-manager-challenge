@@ -34,9 +34,17 @@ function generateStudentObject(id, firstName, lastName, githubUsername, email) {
   return student
 }
 
+function removeCohortFromCohorts(cohortName) {
+  let cohort = searchForCohort(cohortName)
+  const indexOfCohort = cohorts.indexOf(cohort)
+  cohort = cohorts.splice(indexOfCohort, 1)
+  return cohort
+}
+
 module.exports = {
   a: generateCohort,
   b: searchForCohort,
   c: addStudentToCohort,
-  d: generateStudentObject
+  d: generateStudentObject,
+  e: removeCohortFromCohorts
 }

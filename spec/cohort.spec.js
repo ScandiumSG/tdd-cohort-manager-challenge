@@ -1,4 +1,4 @@
-const { a, b, c, d } = require('../src/CohortManager.js')
+const { a, b, c, d, e } = require('../src/CohortManager.js')
 
 describe('Cohort basic testing', () => {
   it('Cohort should exist', () => {
@@ -21,7 +21,9 @@ describe('Cohort basic testing', () => {
   it('Attempt to find undefined cohort', () => {
     expect(() => b('UndefinedCohort')).toThrowError()
   })
+})
 
+describe('Create and add student', () => {
   it('Generate student', () => {
     const student = d(
       'la8pv',
@@ -51,5 +53,15 @@ describe('Cohort basic testing', () => {
     c(student, 'CohortWithStudent')
     const postRes = b('CohortWithStudent')
     expect(postRes.students.length).toEqual(1)
+  })
+
+  it('Remove cohort', () => {
+    const res = a('CohortToAddThenRemove')
+    const cohort = b(res.name)
+    expect(cohort.students.length).toEqual(0)
+    const removeRes = e(res.name)[0]
+    expect(removeRes.name).toEqual(res.name)
+
+    expect(() => b(res.name)).toThrowError()
   })
 })
