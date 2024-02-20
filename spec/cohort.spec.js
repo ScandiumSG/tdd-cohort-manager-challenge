@@ -64,4 +64,18 @@ describe('Create and add student', () => {
 
     expect(() => b(res.name)).toThrowError()
   })
+
+  it('Dont remove not specified cohort', () => {
+    const res = a('CohortToAddThenRemove')
+    const res2 = a('DoNotRemove')
+    const cohort = b(res.name)
+    expect(cohort.students.length).toEqual(0)
+    const removeRes = e(res.name)[0]
+    expect(removeRes.name).toEqual(res.name)
+
+    expect(() => b(res.name)).toThrowError()
+
+    const cohort2 = b(res2.name)
+    expect(cohort2).toBeDefined()
+  })
 })
